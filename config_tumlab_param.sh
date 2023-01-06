@@ -97,5 +97,5 @@ echo ""
 echo ""
 echo "------------Parametrizacion de nombre tumlab------------ "
 echo "Tumlab name: $name"
-echo "$name" > /etc/hostname
+hostnamectl set-hostname "$name"
 echo "------------Fin de parametrizacion de nombre tumlab------------ "
