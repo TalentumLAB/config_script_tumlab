@@ -31,7 +31,7 @@ if_value_is_avaiable=$(check_number "$id_batch")
 if [[ $if_value_is_avaiable == 'true' ]]; then
     add_parameters id_batch "$id_batch" 0
 else
-    echo "wrong entered value: $id_batch "
+    echo "wrong entered value: $id_batch "  
 fi
 
 echo "Digite el numero del projecto: "
