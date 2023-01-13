@@ -26,7 +26,6 @@ add_parameters(){
 
 echo "Digite el numero de lote: "
 read -r id_batch
-#echo "$id_batch"
 if_value_is_avaiable=$(check_number "$id_batch")
 if [[ $if_value_is_avaiable == 'true' ]]; then
     add_parameters id_batch "$id_batch" 0
@@ -36,7 +35,6 @@ fi
 
 echo "Digite el numero del projecto: "
 read -r id_project
-#echo "$id_project"
 if_value_is_avaiable=$(check_number "$id_project")
 if [[ $if_value_is_avaiable == 'true' ]]; then
     add_parameters id_project "$id_project" 1
@@ -46,7 +44,6 @@ fi
 
 echo "Digite el numero del departamento: "
 read -r id_deparment
-#echo "$id_deparment"
 if_value_is_avaiable=$(check_number "$id_deparment")
 if [[ $if_value_is_avaiable == 'true' ]]; then
     add_parameters id_deparment "$id_deparment" 2
@@ -56,7 +53,6 @@ fi
 
 echo "Digite el numero de la ciudad: "
 read -r id_town
-#echo "$id_town"
 if_value_is_avaiable=$(check_number "$id_town")
 if [[ $if_value_is_avaiable == 'true' ]]; then
     add_parameters id_town "$id_town" 3
@@ -66,7 +62,6 @@ fi
 
 echo "Digite el numero de la institucion: "
 read -r id_institution
-#echo "$id_institution"
 if_value_is_avaiable=$(check_number "$id_institution")
 if [[ $if_value_is_avaiable == 'true' ]]; then
     add_parameters id_institution "$id_institution" 4
@@ -85,9 +80,7 @@ else
 fi
 
 interface="$(ls /sys/class/net/ | grep wl)"
-#echo "$interface"
 mac_address="$(cat /sys/class/net/"$interface"/address)"
-#echo "$mac_address"
 name="$(echo "$mac_address" | tr -d ':')"
 add_parameters mac_address "\"$name\"" 6
 
