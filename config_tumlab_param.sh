@@ -93,5 +93,5 @@ echo "------------Parametrizacion de nombre tumlab------------ "
 echo "Tumlab name: $name"
 hostnamectl set-hostname "$name"
 old_line="$(sed '16q;d' $path_config_promtail)"
-sed -i.bak "16 s/$old_line/mac_address: $name/" $path_config_promtail
+sed -i.bak "16 s/$old_line/          mac_address: $name/" $path_config_promtail
 echo "------------Fin de parametrizacion de nombre tumlab------------ "
