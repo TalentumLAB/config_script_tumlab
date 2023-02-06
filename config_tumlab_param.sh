@@ -6,6 +6,10 @@ path_json="/tumlab/syncthing/agent.config"
 echo "$path_json"
 path_config_promtail="/tumlab/apps/promtail/config-promtail.yml"
 
+ramdom_licence_number=$(echo $RANDOM | md5sum | head -c 8)
+
+echo "ramdom_licece_number= $ramdom_licence_number"
+
 check_number(){
     value="$1"
     retval=""
@@ -72,7 +76,6 @@ fi
 
 echo "Digite el numero de la sucursal: "
 read -r id_branch
-#echo "$id_branch"
 if_value_is_avaiable=$(check_number "$id_branch")
 if [[ $if_value_is_avaiable == 'true' ]]; then
     add_parameters id_branch "$id_branch" 5
@@ -85,9 +88,13 @@ mac_address="$(cat /sys/class/net/"$interface"/address)"
 name="$(echo "$mac_address" | tr -d ':')"
 add_parameters mac_address "\"$name\"" 6
 
+licence_number="bt""$id_batch""p""$id_project""d""$id_deparment""t""$id_town""i""$id_institution""b""$id_branch""-""$name""-""$ramdom_licence_number"""
+echo "licence_number= $licence_number"
+
+jq '.tumlab.'"information"' += [{"licence":"'"$licence_number"'"}]' $path_json > tmp.json && rm $path_json && jq '.' tmp.json > $path_json && rm tmp.json
+
 cat "$path_json"
-echo "------------Fin de parametrizacion de informacion del tumlab------------ "
-echo ""
+echo "------------Fin de parametrizacion de informacion del tumlab------------ "echo ""
 echo ""
 echo "------------Parametrizacion de nombre tumlab------------ "
 echo "Tumlab name: $name"
