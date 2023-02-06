@@ -7,7 +7,7 @@ StartLimitIntervalSec=0
 Type=simple
 Restart=always
 RestartSec=1
-User=root
+User=nexum
 ExecStart=/tumlab/apps/config_script_tumlab/syncthing-linux-amd64-v1.22.2/syncthing
 
 [Install]
