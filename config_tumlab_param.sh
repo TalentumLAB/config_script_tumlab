@@ -91,7 +91,7 @@ add_parameters mac_address "\"$name\"" 6
 licence_number="bt""$id_batch""p""$id_project""d""$id_deparment""t""$id_town""i""$id_institution""b""$id_branch""-""$name""-""$ramdom_licence_number"""
 echo "licence_number= $licence_number"
 
-jq '.tumlab.'"information"' += [{"licence":"'"$licence_number"'"}]' $path_json > tmp.json && rm $path_json && jq '.' tmp.json > $path_json && rm tmp.json
+jq '.tumlab.'"information"' += [{"license":"'"$licence_number"'"}]' $path_json > tmp.json && rm $path_json && jq '.' tmp.json > $path_json && rm tmp.json
 
 cat "$path_json"
 echo "------------Fin de parametrizacion de informacion del tumlab------------ "echo ""
