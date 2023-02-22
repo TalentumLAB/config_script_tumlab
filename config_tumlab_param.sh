@@ -89,11 +89,15 @@ add_parameters mac_address "\"$name\"" 6
 
 # licence_number="bt""$id_batch""p""$id_project""d""$id_deparment""t""$id_town""i""$id_institution""b""$id_branch""-""$name""-""$ramdom_licence_number"""
 # echo "licence_number= $licence_number"
+# jq '.tumlab.'"information"' += [{"license":"'"$licence_number"'"}]' $path_json > tmp.json && rm $path_json && jq '.' tmp.json > $path_json && rm tmp.json
 
-echo "Digite el numero de la licencia: "
-read -r licence_number
+echo "Digite el numero de la licencia del Tumlab: "
+read -r license_sync
+add_parameters id_branch "$license_sync" 7
 
-jq '.tumlab.'"information"' += [{"license":"'"$licence_number"'"}]' $path_json > tmp.json && rm $path_json && jq '.' tmp.json > $path_json && rm tmp.json
+echo "Digite el numero de la licencia del LMS: "
+read -r license_perpetual_lms
+add_parameters id_branch "$license_perpetual_lms" 8
 
 cat "$path_json"
 echo "------------Fin de parametrizacion de informacion del tumlab------------ "echo ""
