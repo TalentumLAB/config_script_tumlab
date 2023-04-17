@@ -3,14 +3,6 @@
 path_xml="/home/nexum/.config/syncthing/config.xml"
 name_label=$(hostname)
 
-exist_xml_file=$(checkExitsFile $path_xml)
-
-if [[ $exist_xml_file == 'true' ]]; then
-    sudo rm -r /home/nexum/.config/syncthing
-    sudo systemctl stop syncthing.service
-    sudo rm /lib/systemd/system/syncthing.service
-fi
-
 checkExitsFile() {
     file="$1"
     retval=""
@@ -21,6 +13,15 @@ checkExitsFile() {
     fi
     echo $retval
 }
+
+exist_xml_file=$(checkExitsFile $path_xml)
+
+if [[ $exist_xml_file == 'true' ]]; then
+    sudo rm -r /home/nexum/.config/syncthing
+    sudo systemctl stop syncthing.service
+    sudo rm /lib/systemd/system/syncthing.service
+fi
+
 exist_file=$(checkExitsFile syncthing-linux-amd64-v1.22.2/syncthing)
 if [[ $exist_file == 'false' ]]; then
     wget https://github.com/syncthing/syncthing/releases/download/v1.22.2/syncthing-linux-amd64-v1.22.2.tar.gz
