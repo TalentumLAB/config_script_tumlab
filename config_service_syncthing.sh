@@ -3,6 +3,14 @@
 path_xml="/home/nexum/.config/syncthing/config.xml"
 name_label=$(hostname)
 
+exist_xml_file=$(checkExitsFile $path_xml)
+
+if [[ $exist_xml_file == 'true' ]]; then
+    sudo rm -r /home/nexum/.config/syncthing
+    sudo systemctl stop syncthing.service
+    sudo rm /lib/systemd/system/syncthing.service
+fi
+
 checkExitsFile() {
     file="$1"
     retval=""
