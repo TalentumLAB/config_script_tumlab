@@ -97,14 +97,17 @@ add_parameters license_sync "\"$license_sync\"" 7
 
 echo "Digite el numero de la licencia del LMS: "
 read -r license_perpetual_lms
-add_parameters license_perpetual_lms "\"$license_perpetual_lms\"" 8
+add_parameters license_perpetual_lms "\"$license_perpetual_lms\""
 
 cat "$path_json"
 echo "------------Fin de parametrizacion de informacion del tumlab------------ "echo ""
 echo ""
 echo "------------Parametrizacion de nombre tumlab------------ "
 echo "Tumlab name: $name"
-hostnamectl set-hostname "$name"
+hostnamectl set-hostname "$name"    
 old_line="$(sed '16q;d' $path_config_promtail)"
 sed -i.bak "16 s/$old_line/          mac_address: $name/" $path_config_promtail
-echo "------------Fin de parametrizacion de nombre tumlab------------ "
+
+sudo sed -i.bak "2 s/127.0.0.1 106fd95f6171/#127.0.0.1 106fd95f6171/" /etc/hosts
+sudo sed -i.bak "4 s/listen-address=127.0.0.1/#listen-address=127.0.0.1/" /etc/dnsmasq.conf
+echo "------------Fin de parametrizacion de nombre tumlab------------"
