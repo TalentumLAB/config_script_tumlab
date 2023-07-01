@@ -97,7 +97,7 @@ add_parameters license_sync "\"$license_sync\"" 7
 
 echo "Digite el numero de la licencia del LMS: "
 read -r license_perpetual_lms
-add_parameters license_perpetual_lms "\"$license_perpetual_lms\""
+add_parameters license_perpetual_lms "\"$license_perpetual_lms\"" 8
 
 cat "$path_json"
 echo "------------Fin de parametrizacion de informacion del tumlab------------ "echo ""
