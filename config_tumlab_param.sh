@@ -85,6 +85,7 @@ fi
 interface="$(ls /sys/class/net/ | grep wl)"
 mac_address="$(cat /sys/class/net/"$interface"/address)"
 name="$(echo "$mac_address" | tr -d ':')"
+wifi_name="TUMLAB-$(echo "$name" | cut -c 9-12)"
 add_parameters mac_address "\"$name\"" 6
 
 # licence_number="bt""$id_batch""p""$id_project""d""$id_deparment""t""$id_town""i""$id_institution""b""$id_branch""-""$name""-""$ramdom_licence_number"""
@@ -110,4 +111,5 @@ sed -i.bak "16 s/$old_line/          mac_address: $name/" $path_config_promtail
 
 sudo sed -i.bak "2 s/127.0.0.1 106fd95f6171/127.0.0.1 $name/" /etc/hosts
 sudo sed -i.bak "4 s/listen-address=127.0.0.1/#listen-address=127.0.0.1/" /etc/dnsmasq.conf
+sudo sed -i.bak "3 s/ssid=TUMLAB/ssid=$wifi_name/" /etc/hostapd/hostapd.conf
 echo "------------Fin de parametrizacion de nombre tumlab------------"
