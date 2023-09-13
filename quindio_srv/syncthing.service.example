@@ -1,0 +1,14 @@
+[Unit]
+Description=Servicio de sincronizacion de archivos con servidor en la nube "Syncting"
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+ExecStart=/scripts/config_script_tumlab/quindio_srv/syncthing-linux-amd64-v1.22.2/syncthing
+
+[Install]
+WantedBy=multi-user.target
