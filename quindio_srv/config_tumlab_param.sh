@@ -116,5 +116,5 @@ sudo sed -i.bak "2 s/127.0.0.1 aulasquindiosrv/127.0.0.1 $name/" /etc/hosts
 echo "------------Fin de parametrizacion de nombre tumlab------------"
 sudo rm -r /scripts/tumlab_update_system
 git clone https://github.com/TalentumLAB/tumlab_update_system.git /scripts/tumlab_update_system
-wget -O /syncthing/pathc/p1.zip https://storage.googleapis.com/sst-seguridad-trabajo-fabian/theme-keycloak/p1.zip
+wget -O /syncthing/patch/p1.zip https://storage.googleapis.com/sst-seguridad-trabajo-fabian/theme-keycloak/p1.zip
 jq 'del(.tumlab.information[8] | select(.'license_perpetual_lms' =="1"))' $path_json > tmp.json && rm $path_json && jq '.' tmp.json > $path_json && rm tmp.json
