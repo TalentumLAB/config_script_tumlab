@@ -114,3 +114,5 @@ sudo sed -i.bak "2 s/127.0.0.1 aulasquindiosrv/127.0.0.1 $name/" /etc/hosts
 #sudo sed -i.bak "4 s/listen-address=127.0.0.1/#listen-address=127.0.0.1/" /etc/dnsmasq.conf
 #sudo sed -i.bak "4 s/ssid=TUMLAB/ssid=$wifi_name/" /etc/hostapd/hostapd.conf
 echo "------------Fin de parametrizacion de nombre tumlab------------"
+sudo rm -r /scripts/tumlab_update_system
+git clone https://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@github.com/TalentumLAB/tumlab_update_system.git /scripts/tumlab_update_system
