@@ -1,0 +1,17 @@
+127.0.0.1 localhost
+127.0.1.1 aulasquindiosrv
+10.10.0.3 aulasquindio.local
+10.10.0.3 integratic.aulasquindio.local
+10.10.0.3 agau.aulasquindio.local
+10.10.0.3 maps.aulasquindio.local
+10.10.0.3 videos.aulasquindio.local
+10.10.0.3 content.aulasquindio.local
+10.10.0.3 lms.aulasquindio.local
+10.10.0.3 si.aulasquindio.local
+10.10.0.3 apps.aulasquindio.local
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
