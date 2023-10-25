@@ -39,7 +39,7 @@ sudo systemctl start syncthing
 sleep 3
 id_tumlab=$(xmlstarlet sel -t -c "/configuration/folder/device[1]" "$path_xml" |grep id | awk -F '"' '{print $2}')
 
-echo "Digite el numero del municipio. Balboa=1, Miranda=2, Cajibio=3, B/Aires=4, sipi=5, patia=6, p/leguizamo=7, valle=8 "
+echo "Digite el numero del municipio. Balboa=1, Miranda=2, Cajibio=3, B/Aires=4, sipi=5, patia=6, p/leguizamo=7, valle=8, regional-narino=9 "
 read -r id_municipio
 
 case "${id_municipio}" in
@@ -66,6 +66,9 @@ case "${id_municipio}" in
     ;;
 8)
     id_server="PC4H5G3-GLV2AYL-FEOJ6YE-BLIR5SF-YKTWOWC-MZXQC3I-7BSJLFJ-NYLLMQC"
+    ;;
+9)
+    id_server="PLE4KTH-O5T4UH2-DSLUGUU-44Y5REX-XE4JXJ6-H5BWYOK-SZBGXR3-OHFDBQX"
     ;;
 *)
     echo "Valor ingresado incorrecto"

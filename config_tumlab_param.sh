@@ -109,7 +109,7 @@ hostnamectl set-hostname "$name"
 old_line="$(sed '16q;d' $path_config_promtail)"
 sed -i.bak "16 s/$old_line/          mac_address: $name/" $path_config_promtail
 
-sudo sed -i.bak "2 s/127.0.0.1 106fd95f6171/127.0.0.1 $name/" /etc/hosts
+sudo sed -i.bak "2 s/127.0.0.1 tumlab/127.0.0.1 $name/" /etc/hosts
 sudo sed -i.bak "4 s/listen-address=127.0.0.1/#listen-address=127.0.0.1/" /etc/dnsmasq.conf
 sudo sed -i.bak "4 s/ssid=TUMLAB/ssid=$wifi_name/" /etc/hostapd/hostapd.conf
 echo "------------Fin de parametrizacion de nombre tumlab------------"
