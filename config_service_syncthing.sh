@@ -3,6 +3,8 @@
 path_xml="/home/tumlab/.config/syncthing/config.xml"
 name_label=$(hostname)
 
+sudo apt-get install xmlstarlet
+
 checkExitsFile() {
     file="$1"
     retval=""
