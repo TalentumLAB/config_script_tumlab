@@ -8,7 +8,7 @@ Type=simple
 Restart=always
 RestartSec=1
 User=tumlab
-ExecStart=/tumlab/apps/config_script_tumlab/syncthing-linux-amd64-v1.22.2/syncthing
+ExecStart=/tumlab/scripts/config_script_tumlab/syncthing-linux-amd64-v1.22.2/syncthing
 
 [Install]
 WantedBy=multi-user.target
