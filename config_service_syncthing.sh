@@ -1,6 +1,22 @@
 #!/bin/bash
+echo "Si es modelo nuevo digite 1 si es modelo viejo digite 2"
+read -r model
 
-path_xml="/home/tumlab/.config/syncthing/config.xml"
+case "${model}" in
+1)
+    user="tumlab"
+    ;;
+2)
+    user="nexum"
+    ;;
+*)
+    echo "Valor ingresado incorrecto"
+    rm /lib/systemd/system/syncthing.service
+    exit 1
+    ;;
+esac
+
+path_xml="/home/$user/.config/syncthing/config.xml"
 name_label=$(hostname)
 
 sudo apt-get install xmlstarlet
@@ -19,7 +35,7 @@ checkExitsFile() {
 exist_xml_file=$(checkExitsFile $path_xml)
 
 if [[ $exist_xml_file == 'true' ]]; then
-    sudo rm -r /home/tumlab/.config/syncthing
+    sudo rm -r /home/$user/.config/syncthing
     sudo systemctl stop syncthing.service
     sudo rm /lib/systemd/system/syncthing.service
 fi
@@ -31,8 +47,15 @@ if [[ $exist_file == 'false' ]]; then
     rm syncthing-linux-amd64-v1.22.2.tar.gz
 fi
 
-example_service_file="./syncthing.service.example"
-cat $example_service_file > /lib/systemd/system/syncthing.service
+if [[ $user == 'nexum' ]]; then
+    example_service_file="./syncthing.service.example2"
+    cat $example_service_file > /lib/systemd/system/syncthing.service
+
+else
+    example_service_file="./syncthing.service.example"
+    cat $example_service_file > /lib/systemd/system/syncthing.service
+fi
+
 
 sudo systemctl enable syncthing
 

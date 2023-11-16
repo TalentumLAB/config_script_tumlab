@@ -1,0 +1,14 @@
+[Unit]
+Description=Servicio de sincronizacion de archivos con servidor en la nube "Syncting"
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=nexum
+ExecStart=/tumlab/scripts/config_script_tumlab/syncthing-linux-amd64-v1.22.2/syncthing
+
+[Install]
+WantedBy=multi-user.target
