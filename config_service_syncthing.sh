@@ -2,6 +2,7 @@
 echo "Si es modelo nuevo digite 1 si es modelo viejo digite 2"
 read -r model
 
+sudo chmod -R 777 /tumlab/syncthing
 case "${model}" in
 1)
     user="tumlab"
