@@ -82,7 +82,7 @@ else
     echo "wrong entered value: $id_branch"
 fi
 
-interface="$(ls /sys/class/net/ | grep wl)"
+interface="$(ls /sys/class/net/ | grep wlp)"
 mac_address="$(cat /sys/class/net/"$interface"/address)"
 name="$(echo "$mac_address" | tr -d ':')"
 wifi_name="TUMLAB-$(echo "$name" | cut -c 9-12)"
