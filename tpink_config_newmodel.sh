@@ -1,22 +1,27 @@
 #!/bin/bash
 
+# Definicion de ruta de driver
 driver_dir="/tumlab/scripts/rtl8812au"
 echo "$driver_dir"
-
+# Clonacion de repositorio con driver
 git clone https://github.com/aircrack-ng/rtl8812au.git "$driver_dir"
 
+# Se valida el listado de interfaces de red antes de la instalacion de la nueva
 interfaces_before=$(ip link show > /tmp/interfaces_before.txt)
 echo "$interfaces_before"
 
+# Se instalan las dependencias necesarias para la instalacion del driver
 apt-get update
 apt install dkms -y
 
 apt install build-essential libelf-dev linux-headers-"$(uname -r)" -y
 
+# Se instala el driver
+
 cd "$driver_dir" || exit
 
 make dkms_install
-
+# Para culminar la instalacion del driver, se solicita que se desconecte y vuelva a conectar la tarjeta de red TPLINK
 printf '\n'
 printf '\n'
 printf '\n'
@@ -33,7 +38,7 @@ printf '\n'
 printf '\n'
 printf '\n'
 
-
+# Se valida nuevamente el listado de las interfaces para obtener el nombre de la nueva tarjeta de red
 interfaces_after=$(ip link show > /tmp/interfaces_after.txt)
 
 echo "$interfaces_after"
@@ -44,7 +49,7 @@ echo "El nombre de la tarjeta de red USB es: $new_interface"
 
 # Verificar si se proporcionó el nuevo nombre de la interfaz
 if [ -z "$new_interface" ]; then
-    echo "Error: Debe proporcionar el nuevo nombre de la interfaz como argumento."
+    echo "Error: No se encuentra el nombre de la nueva tarjeta de red"
     exit 1
 fi
 
@@ -73,7 +78,7 @@ sed -i "s/^interface=.*$/interface=$new_interface/" "$DNS_CONFIG_FILE"
 # Editar el archivo de configuración de netplan
 sed -i "s/wlp4s0:/$new_interface:/g" "$NETPLAN_CONFIG_FILE"
 
-# Verificar si la edición fue exitosa hostapd
+
 # Verificar si la edición fue exitosa en los archivos
 if grep -q "^interface=$new_interface$" "$HP_CONFIG_FILE" && grep -q "^interface=$new_interface$" "$DNS_CONFIG_FILE" && grep -q "$new_interface:" "$NETPLAN_CONFIG_FILE"; then
     echo "Los archivos $HP_CONFIG_FILE, $DNS_CONFIG_FILE y $NETPLAN_CONFIG_FILE fueron editados correctamente con la nueva interfaz $new_interface."
